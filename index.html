@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0"/>
+
+  <title>
+    Tic Tac Toe: XO Multiplayer
+  </title>
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+      background: #0F172A;
+      font-family: Arial, sans-serif;
+      color: white;
+      line-height: 1.7;
+    }
+
+    .container{
+      max-width: 950px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    .header{
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 35px;
+    }
+
+    .header h1{
+      color: #22D3EE;
+      font-size: 34px;
+      margin-bottom: 10px;
+
+      text-shadow:
+          0 0 10px rgba(34,211,238,0.5),
+          0 0 20px rgba(34,211,238,0.3);
+    }
+
+    .header p{
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .tabs{
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .tab-button{
+
+      background: #1E293B;
+
+      border: 1px solid #22D3EE;
+
+      color: #22D3EE;
+
+      padding: 12px 22px;
+
+      border-radius: 12px;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      transition: 0.25s ease;
+    }
+
+    .tab-button:hover{
+
+      background: #22D3EE;
+
+      color: black;
+
+      box-shadow:
+          0 0 15px rgba(34,211,238,0.45);
+    }
+
+    .tab-button.active{
+
+      background: #22D3EE;
+
+      color: black;
+
+      font-weight: bold;
+
+      box-shadow:
+          0 0 20px rgba(34,211,238,0.5);
+    }
+
+    .content-box{
+
+      background: #1E293B;
+
+      border-radius: 18px;
+
+      padding: 30px;
+
+      border:
+          1px solid rgba(255,255,255,0.08);
+
+      box-shadow:
+          0 0 25px rgba(0,0,0,0.35);
+    }
+
+    .tab-content{
+      display: none;
+    }
+
+    .tab-content.active{
+      display: block;
+    }
+
+    h2{
+      color: #22D3EE;
+      margin-bottom: 18px;
+      font-size: 28px;
+    }
+
+    h3{
+      color: #22D3EE;
+      margin-top: 28px;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    p{
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 15px;
+    }
+
+    ul{
+      margin-left: 22px;
+      margin-bottom: 18px;
+    }
+
+    li{
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.82);
+    }
+
+    strong{
+      color: #22D3EE;
+    }
+
+    a{
+      color: #22D3EE;
+      text-decoration: none;
+    }
+
+    a:hover{
+      text-decoration: underline;
+    }
+
+    .footer{
+
+      margin-top: 40px;
+
+      text-align: center;
+
+      padding-top: 20px;
+
+      border-top:
+          1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer p{
+
+      color: rgba(255,255,255,0.55);
+
+      font-size: 14px;
+
+      margin-bottom: 5px;
+    }
+
+    @media(max-width: 600px){
+
+      .header h1{
+        font-size: 27px;
+      }
+
+      .tab-button{
+        width: 100%;
+      }
+
+      .content-box{
+        padding: 22px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <div class="header">
+
+    <h1>
+      Tic Tac Toe: XO Multiplayer
+    </h1>
+
+    <p>
+      Official App Information
+    </p>
+
+  </div>
+
+  <!-- TABS -->
+
+  <div class="tabs">
+
+    <button
+            class="tab-button active"
+            onclick="showTab('privacy', this)">
+
+      Privacy Policy
+
+    </button>
+
+    <button
+            class="tab-button"
+            onclick="showTab('terms', this)">
+
+      Terms & Conditions
+
+    </button>
+
+  </div>
+
+  <!-- CONTENT -->
+
+  <div class="content-box">
+
+    <!-- PRIVACY POLICY -->
+
+    <div id="privacy"
+         class="tab-content active">
+
+      <h2>
+        Privacy Policy
+      </h2>
+
+      <p>
+        This Privacy Policy applies to
+        <strong>
+          Tic Tac Toe: XO Multiplayer
+        </strong>
+        and related services operated by
+        <strong>
+          Subhadip Pramanik
+        </strong>.
+      </p>
+
+      <h3>
+        Information Collection
+      </h3>
+
+      <p>
+        The application may temporarily process
+        limited gameplay-related information
+        required for online multiplayer functionality.
+      </p>
+
+      <ul>
+        <li>
+          Temporary multiplayer room data
+        </li>
+
+        <li>
+          Device technical information
+          required for connectivity
+        </li>
+
+        <li>
+          Basic gameplay session information
+        </li>
+      </ul>
+
+      <h3>
+        Local Device Storage
+      </h3>
+
+      <p>
+        Basic user preferences such as
+        nickname, theme settings,
+        and gameplay preferences may be stored
+        locally on your device.
+      </p>
+
+      <h3>
+        Online Multiplayer
+      </h3>
+
+      <p>
+        During online gameplay,
+        temporary match-related data may be
+        synchronized through cloud services
+        to support multiplayer connectivity
+        and gameplay synchronization.
+      </p>
+
+      <p>
+        Most multiplayer session data is temporary
+        and may be automatically removed after
+        gameplay sessions end.
+      </p>
+
+      <h3>
+        Third-Party Services
+      </h3>
+
+      <p>
+        The application may use trusted
+        third-party services such as
+        Firebase services for online
+        multiplayer functionality and app stability.
+      </p>
+
+      <h3>
+        Data Security
+      </h3>
+
+      <p>
+        Reasonable security measures are used
+        to protect application services
+        and multiplayer functionality.
+      </p>
+
+      <h3>
+        Children's Privacy
+      </h3>
+
+      <p>
+        The application is not intended
+        for children under 13 years of age.
+      </p>
+
+      <h3>
+        Changes to This Policy
+      </h3>
+
+      <p>
+        This Privacy Policy may be updated
+        periodically.
+        Any changes will be reflected on this page.
+      </p>
+
+      <h3>
+        Contact Us
+      </h3>
+
+      <p>
+        If you have questions regarding
+        this Privacy Policy,
+        contact us at:
+      </p>
+
+      <p>
+        <a href="mailto:support.sptechstudios@gmail.com">
+
+          support.sptechstudios@gmail.com
+
+        </a>
+      </p>
+
+    </div>
+
+    <!-- TERMS -->
+
+    <div id="terms"
+         class="tab-content">
+
+      <h2>
+        Terms & Conditions
+      </h2>
+
+      <p>
+        By downloading or using
+        <strong>
+          Tic Tac Toe: XO Multiplayer
+        </strong>,
+        you agree to these Terms & Conditions.
+      </p>
+
+      <h3>
+        Fair Play
+      </h3>
+
+      <ul>
+
+        <li>
+          Players must play fairly and
+          should not use cheats,
+          hacks, bugs,
+          or modified versions of the application.
+        </li>
+
+        <li>
+          Intentionally disturbing
+          online gameplay or abusing
+          multiplayer systems is prohibited.
+        </li>
+
+      </ul>
+
+      <h3>
+        Online Match Rules
+      </h3>
+
+      <ul>
+
+        <li>
+          A stable internet connection
+          is required for online gameplay.
+        </li>
+
+        <li>
+          Match synchronization may be affected
+          by poor internet connectivity
+          or server-related issues.
+        </li>
+
+        <li>
+          Temporary multiplayer rooms may
+          automatically expire or be removed
+          after inactivity.
+        </li>
+
+      </ul>
+
+      <h3>
+        User Responsibility
+      </h3>
+
+      <p>
+        Users are responsible for
+        their nickname,
+        gameplay activity,
+        device security,
+        and internet connectivity while
+        using the application.
+      </p>
+
+      <h3>
+        App Updates
+      </h3>
+
+      <p>
+        Features,
+        gameplay mechanics,
+        online systems,
+        advertisements,
+        or other services may change
+        in future updates without prior notice.
+      </p>
+
+      <h3>
+        Intellectual Property
+      </h3>
+
+      <p>
+        All application content,
+        designs,
+        logos,
+        branding,
+        and source code remain
+        the property of the Service Provider.
+      </p>
+
+      <h3>
+        Limitation of Liability
+      </h3>
+
+      <p>
+        The Service Provider is not responsible
+        for gameplay interruptions,
+        internet failures,
+        device-related issues,
+        or temporary unavailability
+        of online services.
+      </p>
+
+      <h3>
+        Termination
+      </h3>
+
+      <p>
+        The Service Provider reserves the right
+        to restrict access to multiplayer services
+        if users intentionally abuse,
+        exploit,
+        or disrupt the application.
+      </p>
+
+      <h3>
+        Contact Us
+      </h3>
+
+      <p>
+        If you have any questions
+        regarding these Terms & Conditions,
+        contact us at:
+      </p>
+
+      <p>
+        <a href="mailto:support.sptechstudios@gmail.com">
+
+          support.sptechstudios@gmail.com
+
+        </a>
+      </p>
+
+    </div>
+
+  </div>
+
+
+</div>
+
+<script>
+
+  function showTab(tabId, element){
+
+    const tabs =
+        document.querySelectorAll('.tab-content');
+
+    const buttons =
+        document.querySelectorAll('.tab-button');
+
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+    });
+
+    buttons.forEach(button => {
+      button.classList.remove('active');
+    });
+
+    document
+        .getElementById(tabId)
+        .classList.add('active');
+
+    element.classList.add('active');
+  }
+
+</script>
+
+</body>
+</html>
